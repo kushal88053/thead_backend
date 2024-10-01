@@ -16,7 +16,13 @@
   },
   "dependencies": {
     "@apollo/server": "^4.11.0",
+    "@prisma/client": "^5.20.0",
+    "@types/node": "^22.7.4",
     "express": "^4.21.0",
-    "graphql": "^16.9.0"
+    "graphql": "^16.9.0",
+    "install": "^0.13.0",
+    "npm": "^10.8.3",
+    "prisma": "^5.20.0",
+    "ts-node": "^10.9.2"
   }
 }
