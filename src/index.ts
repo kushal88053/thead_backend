@@ -2,7 +2,7 @@ import { ApolloServer } from "@apollo/server";
 import express from "express";
 
 import { expressMiddleware } from "@apollo/server/express4";
-import { prismaClient } from "./lib/db"; // Corrected this import
+import { prismaClient } from "./lib/db";
 import createApolloGraphqlServer from "./graphql";
 
 const init = async () => {

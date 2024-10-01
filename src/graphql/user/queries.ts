@@ -1,2 +1,5 @@
+
 export const queries = `
-hello : String`; 
+    hello: String,
+    token(email: String!, password: String!): String
+`;
