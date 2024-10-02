@@ -5,9 +5,15 @@ async function createApolloGraphqlServer() {
 
     const gqlServer = new ApolloServer({
         typeDefs: `
-        type TokenResponse {
-        token: String!
-    }
+      
+    type User {
+    id: ID!
+    firstName: String!
+    lastName: String
+    profileImageURL: String
+    email: String!
+  }
+
       type Query {
       ${User.queries}
       }

@@ -3,6 +3,7 @@ import { createHmac, randomBytes } from 'node:crypto';
 import { ApolloError } from 'apollo-server-express';
 import jwt from 'jsonwebtoken'; // Correct import syntax
 
+const JWT_SECRET = "123123";
 export interface CreateUserPayload {
     firstName: string;
     lastName: string;
@@ -71,7 +72,7 @@ class UserService {
                 };
 
                 // Create a token with user data
-                const token = jwt.sign(user, '123123', { expiresIn: '1h' });
+                const token = jwt.sign(user, JWT_SECRET, { expiresIn: '1h' });
                 return { token }; // Return the token in an object
             } else {
                 throw new ApolloError('Invalid password', 'INVALID_PASSWORD');
@@ -80,6 +81,24 @@ class UserService {
             throw new ApolloError('Email does not exist', 'EMAIL_NOT_EXISTS');
         }
     }
+
+    public static async decodeJWTtoken(token: string) {
+
+        try {
+            const decoded = jwt.verify(token, JWT_SECRET);
+            return decoded;
+        } catch (error) {
+
+            throw new Error('Invalid or expired token');
+        }
+
+
+    }
+
+    public static async getUserById(id: string) {
+        return prismaClient.user.findUnique({ where: { id } });
+    }
+
 }
 
 export default UserService;
